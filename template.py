@@ -8,5 +8,9 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 
-def get(filename):
-    return JINJA_ENVIRONMENT.get_template(filename)
+class Template:
+    def __init__(self, filename):
+        self.t = JINJA_ENVIRONMENT.get_template(filename)
+
+    def render(self, *var):
+        return self.t.render(var)

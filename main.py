@@ -1,5 +1,6 @@
 import webapp2
-import template
+
+from template import Template
 
 
 class IndexHandler(webapp2.RequestHandler):
@@ -7,7 +8,7 @@ class IndexHandler(webapp2.RequestHandler):
         template_values = {
             'word': "Hello World!"
         }
-        t = template.get('index.html')
+        t = Template('index.html')
         self.response.write(t.render(template_values))
 
 

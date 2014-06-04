@@ -1,5 +1,6 @@
 import webapp2
-import template
+
+from template import Template
 
 
 class LoginHandler(webapp2.RequestHandler):
@@ -7,10 +8,21 @@ class LoginHandler(webapp2.RequestHandler):
         template_values = {
             'word': "Hello World!"
         }
-        t = template.get("admin/login.html")
+        t = Template("admin/login.html")
         self.response.write(t.render(template_values))
 
 
+class PicListHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.write(Template('admin/pic.list.html').render())
+
+
+class PicCreateHandler(webapp2.RedirectHandler):
+    def get(self):
+        pass
+
 routes = [
-    ('/admin/login', LoginHandler)
+    ('/admin/login', LoginHandler),
+    ('/admin/pic/list', PicListHandler),
+    ('/admin/pic/create', PicCreateHandler)
 ]
