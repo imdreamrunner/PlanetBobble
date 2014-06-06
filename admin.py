@@ -1,3 +1,4 @@
+import json
 import webapp2
 
 from template import Template
@@ -19,7 +20,12 @@ class PicListHandler(webapp2.RequestHandler):
 
 class PicCreateHandler(webapp2.RedirectHandler):
     def get(self):
-        pass
+        self.response.headers['Content-Type'] = 'application/json'
+        obj = {
+            'success': 'some var',
+            'payload': 'some var',
+        }
+        self.response.out.write(json.dumps(obj))
 
 routes = [
     ('/admin/login', LoginHandler),
